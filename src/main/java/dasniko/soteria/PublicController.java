@@ -26,6 +26,6 @@ public class PublicController {
                 .add("isSuperadmin", request.isUserInRole("superadmin"))
                 .build();
         }
-        return Json.createObjectBuilder().build();
+        return Json.createObjectBuilder().add("public", true).build();
     }
 }

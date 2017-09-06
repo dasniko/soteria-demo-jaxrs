@@ -32,6 +32,10 @@ public class DemoAuthenticationMechanism implements HttpAuthenticationMechanism 
                 identityStore.validate(new UsernamePasswordCredential(name, password)));
         }
 
+        if (httpMessageContext.isProtected()) {
+            return httpMessageContext.responseUnAuthorized();
+        }
+
         return httpMessageContext.doNothing();
     }
 
