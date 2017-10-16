@@ -4,7 +4,7 @@ import org.glassfish.soteria.Utils;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.security.auth.message.AuthException;
+import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
 import javax.security.enterprise.authentication.mechanism.http.HttpMessageContext;
@@ -23,7 +23,7 @@ public class DemoAuthenticationMechanism implements HttpAuthenticationMechanism 
     private IdentityStore identityStore;
 
     @Override
-    public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext httpMessageContext) throws AuthException {
+    public AuthenticationStatus validateRequest(HttpServletRequest request, HttpServletResponse response, HttpMessageContext httpMessageContext) throws AuthenticationException {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
 
@@ -33,7 +33,7 @@ public class DemoAuthenticationMechanism implements HttpAuthenticationMechanism 
         }
 
         if (httpMessageContext.isProtected()) {
-            return httpMessageContext.responseUnAuthorized();
+            return httpMessageContext.responseUnauthorized();
         }
 
         return httpMessageContext.doNothing();
