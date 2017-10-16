@@ -16,5 +16,6 @@ import javax.ws.rs.core.Application;
     @Credentials(callerName = "dasniko", password = "secret", groups = {"user", "admin"}),
     @Credentials(callerName = "john", password = "doe", groups = "user")
 })
+//@BasicAuthenticationMechanismDefinition(realmName = "soteria")
 public class JaxRsApplication extends Application {
 }
